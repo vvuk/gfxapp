@@ -1,9 +1,7 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<meta name="viewport" content="width=device-width">
-</head>
-<body>
+<meta name="viewport" content="width=320">
+<body style="background-color: #fff">
 <!-- BEGIN APPLICATION CODE -->
 <style>
 /* The styles of .item and its contents can be whatever you want, but
@@ -12,19 +10,19 @@
    section.
 */
 .item {
-  width:500px;
+  width:280px;
   padding:20px;
   display:flex;
   align-items:baseline;
   justify-content:space-between;
 }
 .name {
-  font-size:20px;
+  font-size:16px;
   font-weight:bold;
   white-space:pre;
 }
 .number {
-  font-size:16px;
+  font-size:12px;
   white-space:pre;
 }
 .image {
@@ -49,7 +47,22 @@
   ><span class="name"> </span
   ><span class="number"> </span
 ></div>
-<script>
+<!-- END APPLICATION CODE -->
+<!-- BEGIN FRAMEWORK CODE -->
+<style>
+/* All items are absolutely positioned to minimize the cost of reflow.
+   They're overflow:hidden to ensure an offscreen item can never
+   affect what's on the screen. */
+.item {
+  position:absolute;
+  left:0;
+  overflow:hidden;
+}
+</style>
+<!-- END FRAMEWORK CODE -->
+
+<!-- app code -->
+<script type="text/javascript">
 // Set the number of items you want in your list here. Dynamically changing the
 // number of items is not supported but would be easy to add.
 var numItems = 100000;
@@ -84,19 +97,10 @@ function getScrollPortHeight() { return window.innerHeight; }
 var scrolledChild = document.documentElement;
 var scrollEventNode = window;
 </script>
-<!-- END APPLICATION CODE -->
-<!-- BEGIN FRAMEWORK CODE -->
-<style>
-/* All items are absolutely positioned to minimize the cost of reflow.
-   They're overflow:hidden to ensure an offscreen item can never
-   affect what's on the screen. */
-.item {
-  position:absolute;
-  left:0;
-  overflow:hidden;
-}
-</style>
-<script>
+
+
+<!-- list code -->
+<script type="text/javascript">
 var template = document.getElementById("template");
 var itemHeight = template.clientHeight;
 // The template should not be rendered, so take it out of the document.
@@ -174,6 +178,5 @@ fixupItems();
 scrollEventNode.addEventListener("scroll", fixupItems);
 scrollEventNode.addEventListener("resize", fixupItems);
 </script>
-<!-- END FRAMEWORK CODE -->
 </body>
 </html>
