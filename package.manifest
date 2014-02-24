@@ -1,0 +1,15 @@
+{
+  "name": "Gfx Test App",
+  "description": "Gfx Test App",
+  "launch_path": "/~vladimir/misc/gfxapp/index.html",
+  "package_path": "https://people.mozilla.com/~vladimir/misc/gfxapp/gfxapp.zip",
+  "version": "1",
+  "developer": {
+    "name": "Mozilla Gfx Team",
+    "url": "http://wiki.mozilla.org"
+  },
+  "icons": {
+    "64": "/~vladimir/misc/gfxapp/assets/orange-icon-64px.png",
+    "200": "/~vladimir/misc/gfxapp/assets/orange-icon-200px.png"
+  }
+}

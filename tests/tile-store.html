@@ -1,0 +1,56 @@
+<style>
+span {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: red;
+}
+div {
+  transform: rotateX(5deg) rotateY(10deg)
+}
+</style>
+
+<div id="main">
+</div>
+<script>
+
+
+window.onload = function() {
+var TILE_SIZE = 256;
+
+var elems = {};
+for (var x = 0; x < 25; x++) {
+  for (var y = 0; y < 25; y++) {
+    var span = document.createElement("span");
+    span.style.top = TILE_SIZE / 2 + y * TILE_SIZE + "px";
+    span.style.left = TILE_SIZE / 2 + x * TILE_SIZE + "px";
+    document.getElementById("main").appendChild(span);
+    elems[x] = elems[x] || {};
+    elems[x][y] = span;
+  }
+}
+
+var color = "red";
+var tileWidthStep = 0;
+var tileWidth = [-1,0,2,4,9];
+function step() {
+  requestAnimationFrame(step);
+  if (color == "red") {
+    color = "blue";
+  } else {
+    color = "red";
+  }
+
+  var currTileWidth = tileWidth[tileWidthStep];
+  tileWidthStep = (tileWidthStep+1) % tileWidth.length;
+  for (var x = 0; x < 25; x++) {
+    for (var y = 0; y < 25; y++) {
+      elems[x][y].style.background = color;
+      elems[x][y].style.display = (x <= currTileWidth && y <= currTileWidth) ? "inline" : "none";
+    }
+  }
+}
+
+requestAnimationFrame(step);
+}
+</script>

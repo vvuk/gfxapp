@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<style type="text/css">
+body {
+    background: white;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+div.big {
+    width: 90%;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 150%;
+    text-align: center;
+    margin: 5px auto 5px auto;
+    color: black;
+    background: orange;
+
+    cursor: pointer;
+}
+
+div.install {
+    background: lightblue;
+}
+
+div.big > span {
+    font-size: 50%;
+    color: #555;
+    display: block;
+}
+
+</style>
+
+<script type="text/javascript">
+function doInstall() {
+    var manifest = "https://people.mozilla.com/~vladimir/misc/gfxapp/package.manifest";
+    navigator.mozApps.installPackage(manifest);
+}
+
+var testMap = {
+    "virtual-list": "virtual-list-demo.html",
+    "tiling-2by2": "2by2.html",
+    "tiling-tile-store": "tile-store.html",
+    "tiling-worst-case": "worst-case.html"
+};
+
+function go(s) {
+    var page = testMap[s];
+    if (!page) {
+	alert("Test '" + s + "' not found!");
+	return;
+    }
+
+    document.location = "tests/" + page;
+}
+</script>
+</head>
+
+<body>
+<div class="big install" onclick="doInstall()">Install App</div>
+<div class="big" onclick="go('virtual-list')">Large Virtual List <span>Dynamically creates DOM items for a very large scrolling list.</span></div>
+<div class="big" onclick="go('virtual-list')">Tiling - 2x2 <span>Simple 2x2 tile display</span></div>
+<div class="big" onclick="go('virtual-list')">Tiling -  <span>Simple 2x2 tile display</span></div>
+
+</body>
+</html>

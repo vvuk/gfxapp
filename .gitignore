@@ -1,0 +1,6 @@
+*~
+*.zip
+manifest.webapp
+*.rej
+*.orig
+\#*
