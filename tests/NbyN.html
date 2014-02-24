@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="utils.js"></script>
+<style>
+body {
+  margin: 0; padding: 0;
+}
+
+div {
+  position: absolute;
+}
+
+span {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: red;
+}
+</style>
+</head>
+<body>
+<script>
+window.onload = function() {
+var opts = parseSearch();
+
+var TILE_SIZE = opts["tile"] || 256;
+var NX = opts["x"] || 2;
+var NY = opts["y"] || 2;
+
+var elems = [];
+for (var x = 0; x < NX; x++) {
+  for (var y = 0; y < NY; y++) {
+    var div = document.createElement("div");
+    div.style.backgroundColor = "gray";
+    div.style.top = y * TILE_SIZE + "px";
+    div.style.left = x * TILE_SIZE + "px";
+    div.style.width = TILE_SIZE + "px";
+    div.style.height = TILE_SIZE + "px";
+
+    var span = document.createElement("span");
+    span.style.top = Math.floor((TILE_SIZE / 2) - 1) + "px";
+    span.style.left = Math.floor((TILE_SIZE / 2) - 1) + "px";
+
+    div.appendChild(span);
+    document.body.appendChild(div);
+
+    elems.push(span);
+  }
+}
+
+var color = "red";
+function step() {
+  requestAnimationFrame(step);
+  if (color == "red") {
+    color = "blue";
+  } else {
+    color = "red";
+  }
+  for (var i = 0; i < elems.length; i++) {
+    elems[i].style.background = color;
+  }
+}
+
+requestAnimationFrame(step);
+}
+</script>
+</body>
