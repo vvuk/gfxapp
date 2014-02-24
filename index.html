@@ -46,8 +46,10 @@ var testMap = {
     "virtual-list": "virtual-list-demo.html",
     "tiling-2": "NbyN.html?x=2&y=2",
     "tiling-2-dw": "NbyN-dw.html?x=2&y=2",
+    "tiling-2-grad": "NbyN.html?x=2&y=2&grad=1",
     "tiling-25": "NbyN.html?x=25&y=25",
     "tiling-25-dw": "NbyN-dw.html?x=25&y=25",
+    "tiling-25-grad": "NbyN.html?x=25&y=25&grad=1",
     "tiling-tile-store": "tile-store.html",
 };
 
@@ -67,9 +69,11 @@ function go(s) {
 <div class="big install" onclick="doInstall()">Install App</div>
 <div class="big" onclick="go('virtual-list')">Large Virtual List <span>Dynamically creates DOM items for a very large scrolling list.</span></div>
 <div class="big" onclick="go('tiling-2')">Tiling - 2x2 <span>Simple changing 2x2 tile display</span></div>
-<div class="big" onclick="go('tiling-2-dw')">Tiling - 2x2 (dev-width) <span>Simple changing 2x2 tile display</span></div>
-<div class="big" onclick="go('tiling-25')">Tiling - 25x25 <span>Simple changing 25x25 tile display</span></div>
-<div class="big" onclick="go('tiling-25-dw')">Tiling - 25x25 (dev-width) <span>Simple changing 25x25 tile display</span></div>
+<div class="big" onclick="go('tiling-2-dw')">Tiling - 2x2 (dev-width) <span>Simple changing tile display</span></div>
+<div class="big" onclick="go('tiling-2-grad')">Tiling - 2x2 (gradient) <span>Changing tile display, static bg</span></div>
+<div class="big" onclick="go('tiling-25')">Tiling - 25x25 <span>Simple changing tile display</span></div>
+<div class="big" onclick="go('tiling-25-dw')">Tiling - 25x25 (dev-width) <span>Simple changing tile display</span></div>
+<div class="big" onclick="go('tiling-25-grad')">Tiling - 25x25 (gradient) <span>Changing tile display, static bg</span></div>
 <div class="big" onclick="go('tiling-tile-store')">Tiling - tile store <span>??</span></div>
 
 </body>

@@ -4,7 +4,11 @@
 <script src="utils.js"></script>
 <style>
 body {
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.gradient {
 }
 
 div {
@@ -28,11 +32,26 @@ var TILE_SIZE = opts["tile"] || 256;
 var NX = opts["x"] || 2;
 var NY = opts["y"] || 2;
 
+if (opts["grad"]) {
+  var dimx = NX * TILE_SIZE;
+  var dimy = NY * TILE_SIZE;
+  var csz = (dimx/2) + "px at " + (dimx/2) + "px " + (dimy/2) + "px";
+
+  var css = "background-image: radial-gradient(circle " + csz + ", yellow 0px, orange 25%, rgba(0,0,0,0) 100%)," +
+            "radial-gradient(circle " + csz + ", rgba(0,0,0,0) 0px, green 50%, pink 75%, rgba(0,0,0,0) 100%)," +
+            "radial-gradient(circle " + csz + ", red 0%, blue 100%);" +
+            "background-repeat: no-repeat, no-repeat, no-repeat;" +
+            "width: " + dimx + "px; height: " + dimy + "px;";
+  document.body.setAttribute("style", css);
+}
+
 var elems = [];
 for (var x = 0; x < NX; x++) {
   for (var y = 0; y < NY; y++) {
     var div = document.createElement("div");
-    div.style.backgroundColor = "gray";
+
+    //div.style.backgroundColor = "gray";
+
     div.style.top = y * TILE_SIZE + "px";
     div.style.left = x * TILE_SIZE + "px";
     div.style.width = TILE_SIZE + "px";
