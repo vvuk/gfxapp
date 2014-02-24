@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=320">
+<body style="background-color: #fff">
+<!-- BEGIN APPLICATION CODE -->
+<style>
+/* The styles of .item and its contents can be whatever you want, but
+   all items must have the same height (the height of the template item
+   will be used) --- and don't override the .item styles in the FRAMEWORK CODE
+   section.
+*/
+.item {
+  width:280px;
+  padding:20px;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+}
+.name {
+  font-size:16px;
+  font-weight:bold;
+  white-space:pre;
+}
+.number {
+  font-size:12px;
+  white-space:pre;
+}
+.image {
+  width:32px;
+  height:32px;
+}
+</style>
+<!-- The 'template' element is cloned to create each item. For maximum performance
+     it should not contain any unnecessary nodes (e.g. empty text nodes that
+     don't get rendered), which is why we put the newlines inside the tags.
+     Templates should not contain unnecessary attributes, so use <style> rules
+     instead of 'style' attributes, etc.
+     Note how the text fields have been prepopulated with a single-space
+     text node so we don't have to create any nodes in populateItem below.
+     The template element can contain almost anything (form fields, editable
+     content, graphics, etc etc).
+     The template should start in the document and should contain reasonable
+     content so it's the right height to use for all the real items.
+-->
+<div id="template" class="item"
+  ><span class="image"></span
+  ><span class="name"> </span
+  ><span class="number"> </span
+></div>
+<script>
+// Set the number of items you want in your list here. Dynamically changing the
+// number of items is not supported but would be easy to add.
+var numItems = 1000;
+// Change this function to control what gets created for each item. "element"
+// is a copy of the template element (which may have been previously used with
+// another index, so make sure you reset any contents which may have been set
+// by a previous call to populateItem).
+// You could do almost anything you want here. You could even dynamically
+// create additional child elements (but don't forget to remove them when the
+// element is reused for another index). You could make fields editable, or
+// load images, etc etc etc.
+// In a more realistic example, this would fetch data from an in-memory
+// database. Or, you could replace the item fields with placeholders (e.g.
+// "loading..."), issue an async database query to get the data, and fill in
+// the item DOM when the query completes.
+function populateItem(element, index) {
+  var image = element.firstChild;
+  var name = image.nextSibling;
+  var number = name.nextSibling;
+ 
+  var hue = (index*1000)%360;
+  image.style.backgroundColor = "hsl(" + hue + ",100%,90%)";
+  name.firstChild.data = "Made Up Name #" + index;
+  number.firstChild.data = "0800 11" + index;
+}
+
+// This demo scrolls the whole document. To change it to scroll an overflow:auto
+// element, you would just need to replace these functions here with something
+// else.
+function getScrollPos() { return window.scrollY; }
+function getScrollPortHeight() { return window.innerHeight; }
+var scrolledChild = document.documentElement;
+var scrollEventNode = window;
+</script>
+<!-- END APPLICATION CODE -->
+<!-- BEGIN FRAMEWORK CODE -->
+<style>
+/* All items are absolutely positioned to minimize the cost of reflow.
+   They're overflow:hidden to ensure an offscreen item can never
+   affect what's on the screen. */
+.item {
+  position:absolute;
+  left:0;
+  overflow:hidden;
+}
+</style>
+<script>
+var template = document.getElementById("template");
+var itemHeight = template.clientHeight;
+// The template should not be rendered, so take it out of the document.
+document.body.removeChild(template);
+// Remove its "id" attribute now so that that attribute doesn't get cloned
+// into all the items.
+template.removeAttribute("id");
+
+// Make sure we can scroll the required distance.
+scrolledChild.style.height = itemHeight*numItems + "px";
+
+function generateItems() {
+  var startIndex = 0;
+  var endIndex = numItems;
+
+  for (var i = startIndex; i < endIndex; ++i) {
+    var item;
+    item = template.cloneNode(true);
+    document.body.appendChild(item);
+    populateItem(item, i);
+    item.style.top = i*itemHeight + "px";
+  }
+}
+
+generateItems();
+
+</script>
+<!-- END FRAMEWORK CODE -->
+</body>
+</html>

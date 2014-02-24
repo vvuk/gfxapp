@@ -44,6 +44,7 @@ function doInstall() {
 
 var testMap = {
     "virtual-list": "virtual-list-demo.html",
+    "list-1000": "list-demo-1000.html",
     "tiling-2": "NbyN.html?x=2&y=2",
     "tiling-2-dw": "NbyN-dw.html?x=2&y=2",
     "tiling-2-grad": "NbyN.html?x=2&y=2&grad=1",
@@ -68,6 +69,7 @@ function go(s) {
 <body>
 <div class="big install" onclick="doInstall()">Install App</div>
 <div class="big" onclick="go('virtual-list')">Large Virtual List <span>Dynamically creates DOM items for a very large scrolling list.</span></div>
+<div class="big" onclick="go('list-1000')">Large List <span>An 1000 item scrolling list.</span></div>
 <div class="big" onclick="go('tiling-2')">Tiling - 2x2 <span>Simple changing 2x2 tile display</span></div>
 <div class="big" onclick="go('tiling-2-dw')">Tiling - 2x2 (dev-width) <span>Simple changing tile display</span></div>
 <div class="big" onclick="go('tiling-2-grad')">Tiling - 2x2 (gradient) <span>Changing tile display, static bg</span></div>
