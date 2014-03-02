@@ -12,6 +12,11 @@ span {
 div {
   transform: rotateX(5deg) rotateY(10deg)
 }
+body {
+  overflow: scroll;
+  width: 4000px;
+  height: 4000px;
+}
 </style>
 </head>
 <body>
@@ -24,8 +29,8 @@ window.onload = function() {
 var TILE_SIZE = 256;
 
 var elems = {};
-for (var x = 0; x < 25; x++) {
-  for (var y = 0; y < 25; y++) {
+for (var x = 0; x < 4; x++) {
+  for (var y = 0; y < 4; y++) {
     var span = document.createElement("span");
     span.style.top = TILE_SIZE / 2 + y * TILE_SIZE + "px";
     span.style.left = TILE_SIZE / 2 + x * TILE_SIZE + "px";
@@ -48,8 +53,8 @@ function step() {
 
   var currTileWidth = tileWidth[tileWidthStep];
   tileWidthStep = (tileWidthStep+1) % tileWidth.length;
-  for (var x = 0; x < 25; x++) {
-    for (var y = 0; y < 25; y++) {
+  for (var x = 0; x < 4; x++) {
+    for (var y = 0; y < 4; y++) {
       elems[x][y].style.background = color;
       elems[x][y].style.display = (x <= currTileWidth && y <= currTileWidth) ? "inline" : "none";
     }
