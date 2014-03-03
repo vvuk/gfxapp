@@ -1,0 +1,63 @@
+<script src="utils.js"></script>
+<style>
+div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+</style>
+<script>
+window.onload = function() {
+
+var seed = 1;
+function random() {
+  var x = Math.sin(seed++) * 10000;
+  return x - Math.floor(x);
+}
+function randomTextString() {
+  var len = 10 + random() * 20;
+  var str = "";
+  for (var j = 0; j < len; j++) {
+    str += String.fromCharCode(65 + random() * 20);
+  }
+  return str + "\n";
+}
+
+var opts = parseSearch();
+
+var COLOR = opts["color"] || 256;
+var TEXT = opts["text"] || 100;
+
+for (var i = 0; i < COLOR; i++) {
+  var x = random() * document.body.clientWidth;
+  var y = random() * document.body.clientHeight;
+
+  var element = document.createElement("div");
+  element.style.left = x + "px";
+  element.style.top = y + "px";
+  element.style.background = "rgb(" + Math.floor(random() * 256) + "," + Math.floor(random() * 256) + "," + Math.floor(random() * 256) + ")";
+  document.body.appendChild(element);
+}
+for (var i = 0; i < TEXT; i++) {
+  var x = random() * document.body.clientWidth;
+  var y = random() * document.body.clientHeight;
+
+  var element = document.createTextNode(randomTextString());
+  document.body.appendChild(element);
+}
+
+var lastColor = false;
+function backgroundColor() {
+  requestAnimationFrame(backgroundColor);
+
+  // Make sure the r channel flips every frame otherwise
+  // we could end up with an identical color and optimize
+  // away the frame.
+  var r = lastColor ? 0 : 1;
+  lastColor = !lastColor;
+
+  document.body.style.background = "rgb(" + r + ",0," + (Math.floor(Date.now() / 1000) % 255) + ")";
+}
+requestAnimationFrame(backgroundColor);
+}
+</script>
