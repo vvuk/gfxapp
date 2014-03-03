@@ -72,10 +72,10 @@ function generateItems(displayPortMarginMultiplier) {
 
 function fixupItems() {
   // Synchronously generate all the items that are immediately or nearly visible
-  generateItems(1);
+  generateItems(4);
   // Asynchronously generate the other items for the displayport
   setTimeout(function() {
-    generateItems(4);
+    generateItems(7);
   }, 0);
 }
 
