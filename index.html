@@ -53,6 +53,7 @@ var testMap = {
     "tiling-25-dw": "NbyN-dw.html?x=25&y=25",
     "tiling-25-grad": "NbyN.html?x=25&y=25&grad=1",
     "tiling-tile-store": "tile-store.html",
+    "tiling-trim-displaylist": "large-display-list.html?color=500&text=200&trim=true",
     "small-display-list": "large-display-list.html?color=10&text=10",
     "large-display-list": "large-display-list.html?color=100&text=50",
     "x-large-display-list": "large-display-list.html?color=500&text=200",
@@ -82,6 +83,7 @@ function go(s) {
 <div class="big" onclick="go('tiling-25-dw')">Tiling - 25x25 (dev-width) <span>Simple changing tile display</span></div>
 <div class="big" onclick="go('tiling-25-grad')">Tiling - 25x25 (gradient) <span>Changing tile display, static bg</span></div>
 <div class="big" onclick="go('tiling-tile-store')">Tiling - tile store <span>Tile recycle performance</span></div>
+<div class="big" onclick="go('tiling-trim-displaylist')">Tiling - displaylist<span>Don't draw displaylist items of other tiles</span></div>
 <div class="big" onclick="go('small-display-list')">Display List and Repaint<span>10 color, 10 text nodes</span></div>
 <div class="big" onclick="go('large-display-list')">Display List and Repaint<span>100 color, 50 text nodes</span></div>
 <div class="big" onclick="go('x-large-display-list')">Display List and Repaint<span>500 color, 200 text nodes</span></div>

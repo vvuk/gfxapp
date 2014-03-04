@@ -27,10 +27,26 @@ var opts = parseSearch();
 
 var COLOR = opts["color"] || 256;
 var TEXT = opts["text"] || 100;
+var DISPLAY_LIST_TEST =  opts["trim"] || false;
+
+var displayListElement = null;
+if (DISPLAY_LIST_TEST) {
+  displayListElement = document.createElement("span");
+  displayListElement.style.display = "inline-block";
+  displayListElement.style.width = "256px";
+  displayListElement.style.height = "256px";
+  displayListElement.style.position = "relative";
+  displayListElement.style.float = "left";
+  document.body.appendChild(displayListElement);
+}
 
 for (var i = 0; i < COLOR; i++) {
   var x = random() * document.body.clientWidth;
   var y = random() * document.body.clientHeight;
+  if (x < 256 && y < 256) {
+    x += 256;
+    y += 256;
+  }
 
   var element = document.createElement("div");
   element.style.left = x + "px";
@@ -56,7 +72,11 @@ function backgroundColor() {
   var r = lastColor ? 0 : 1;
   lastColor = !lastColor;
 
-  document.body.style.background = "rgb(" + r + ",0," + (Math.floor(Date.now() / 1000) % 255) + ")";
+  if (DISPLAY_LIST_TEST) {
+    displayListElement.style.background = "rgb(" + r + ",0,255)";
+  } else {
+    document.body.style.background = "rgb(" + r + ",0,255)";
+  }
 }
 requestAnimationFrame(backgroundColor);
 }
