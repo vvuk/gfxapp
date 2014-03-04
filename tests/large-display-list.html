@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+</head>
 <script src="utils.js"></script>
 <style>
+body {
+  margin: 0px;
+  padding: 0px;
+}
 div {
   position: absolute;
   width: 16px;
@@ -41,11 +51,11 @@ if (DISPLAY_LIST_TEST) {
 }
 
 for (var i = 0; i < COLOR; i++) {
-  var x = random() * document.body.clientWidth;
-  var y = random() * document.body.clientHeight;
-  if (x < 256 && y < 256) {
-    x += 256;
-    y += 256;
+  var x = random() * window.innerWidth;
+  var y = random() * window.innerHeight;
+  if (DISPLAY_LIST_TEST && x < 300 && y < 300) {
+    x += 300;
+    y += 300;
   }
 
   var element = document.createElement("div");
@@ -55,9 +65,6 @@ for (var i = 0; i < COLOR; i++) {
   document.body.appendChild(element);
 }
 for (var i = 0; i < TEXT; i++) {
-  var x = random() * document.body.clientWidth;
-  var y = random() * document.body.clientHeight;
-
   var element = document.createTextNode(randomTextString());
   document.body.appendChild(element);
 }
